@@ -1,26 +1,23 @@
 package com.debater.debaterserver.repository;
 
 import com.debater.debaterserver.entity.Person;
-import com.debater.debaterserver.entity.PersonDebate;
-import com.debater.debaterserver.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
+    Person getPersonById(Long id);
+
+    Person getPersonByEmail(String email);
+
     @Query(value = "SELECT * FROM person;", nativeQuery = true)
-    List<Person> findAllPersons();
+    List<Person> getAllPersons();
 
-    List<Person> findAllByNickname(String nickname);
+    boolean existsPersonById(Long id);
 
-    Person findPersonById(Integer id);
-
-
+    boolean existsPersonByEmail(String email);
 
 
 }

@@ -1,6 +1,7 @@
 package com.debater.debaterserver.service;
 
 import com.debater.debaterserver.entity.PersonDebate;
+import com.debater.debaterserver.entity.PersonDebateRaw;
 import com.debater.debaterserver.repository.PersonDebateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,21 +18,35 @@ public class PersonDebateService {
         this.personDebateRepository = personDebateRepository;
     }
 
-    public List<PersonDebate> findPersonDebateByPersonNickname(String nickname) {
-        return personDebateRepository.findPersonDebateByPerson_Nickname(nickname);
+    public PersonDebate getPersonDebateByDebate_IdAndPerson_Id(Long debate_id, Long person_Id){
+        return personDebateRepository.getPersonDebateByDebate_IdAndPerson_Id(debate_id, person_Id);
     }
 
-    public List<PersonDebate> findPersonDebateByPersonId(Integer id){
-        return personDebateRepository.findPersonDebateByPerson_Id(id);
+    public List<PersonDebate> getPersonDebateByDebate_Id(Long debate_id){
+        return personDebateRepository.getPersonDebateByDebate_Id(debate_id);
     }
 
-    public List<PersonDebate> findPersonDebateByDebateId(Integer id){
-        return personDebateRepository.findPersonDebateByDebate_Id(id);
+    public List<PersonDebate> getPersonDebateByPerson_Id(Long person_id){
+        return personDebateRepository.getPersonDebateByPerson_Id(person_id);
     }
 
-    public void createPersonDebate(PersonDebate personDebate){
+    public void updatePersonDebate(PersonDebate personDebate){
         personDebateRepository.save(personDebate);
     }
+
+    public void deletePersonDebate(PersonDebateRaw pdr){
+        personDebateRepository.deleteRawPersonDebateByDebateIdAndPersonId(pdr.getDebateId(), pdr.getPersonId());
+    }
+
+    public void insertPersonDebate(PersonDebate personDebate){
+        personDebateRepository.save(personDebate);
+    }
+
+    public void insertRawPersonDebate(PersonDebateRaw pdr){
+        personDebateRepository.insertRawPersonDebate(pdr.getDebateId(), pdr.getPersonId(), pdr.getRightsId());
+    }
+
+
 
 
 }

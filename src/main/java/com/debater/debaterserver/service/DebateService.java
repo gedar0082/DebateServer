@@ -5,6 +5,8 @@ import com.debater.debaterserver.repository.DebateRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -17,8 +19,28 @@ public class DebateService {
         this.debateRepository = debateRepository;
     }
 
-    public List<Debate> findAllDebate(){
-        return debateRepository.findDebateBy();
+    public Debate getDebateById(Long id){
+        return debateRepository.getDebateById(id);
+    }
+
+    public List<Debate> getAllDebates(){
+        return debateRepository.getDebateBy();
+    }
+
+    public boolean existsDebateById(Long id){
+        return debateRepository.existsDebateById(id);
+    }
+
+    public void deleteDebateById(Long id){
+        debateRepository.deleteById(id);
+    }
+
+    public void updateDebate(Debate debate){
+        debateRepository.save(debate);
+    }
+
+    public Debate insertDebate(Debate debate){
+        return debateRepository.save(debate);
     }
 
 }

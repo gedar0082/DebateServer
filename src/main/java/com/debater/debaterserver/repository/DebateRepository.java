@@ -8,6 +8,13 @@ import java.util.List;
 public interface DebateRepository extends JpaRepository<Debate, Long> {
 
 
-    List<Debate> findDebateBy();
+    Debate getDebateById(Long id);
+
+    List<Debate> getDebateBy();
+
+    boolean existsDebateById(Long id);
+
+
+
 
 }

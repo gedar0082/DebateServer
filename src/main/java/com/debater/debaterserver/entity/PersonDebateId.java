@@ -9,31 +9,31 @@ import java.util.Objects;
 public class PersonDebateId implements Serializable {
 
     @Column(name = "debate_id")
-    private Integer debateId;
+    private Long debateId;
 
     @Column(name = "person_id")
-    private Integer personId;
+    private Long personId;
 
     public PersonDebateId(){}
 
-    public PersonDebateId(Integer debateId, Integer personId){
+    public PersonDebateId(Long debateId, Long personId){
         this.debateId = debateId;
         this.personId = personId;
     }
 
-    public Integer getDebateId() {
+    public Long getDebateId() {
         return debateId;
     }
 
-    public void setDebateId(Integer debateId) {
+    public void setDebateId(Long debateId) {
         this.debateId = debateId;
     }
 
-    public Integer getPersonId() {
+    public Long getPersonId() {
         return personId;
     }
 
-    public void setPersonId(Integer personId) {
+    public void setPersonId(Long personId) {
         this.personId = personId;
     }
 
