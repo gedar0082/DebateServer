@@ -2,6 +2,7 @@ package com.debater.debaterserver.entity;
 
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -13,7 +14,7 @@ public class Thesis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "intro")
     private String intro;
@@ -51,6 +52,9 @@ public class Thesis {
     @JoinColumn(name = "person_id")
     private Person person;
 
+    @Column(name = "date_time")
+    private Timestamp dateTime;
+
     public Thesis() { }
 
     public Thesis(
@@ -72,11 +76,11 @@ public class Thesis {
         this.intro = intro;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -136,39 +140,6 @@ public class Thesis {
         this.roundNumber = roundNumber;
     }
 
-    @Override
-    public int hashCode(){
-        return Objects.hash(id, intro, definition, problem, plan, caseIntro, caseDesc, roundNumber);
-    }
-
-    @Override
-    public boolean equals(Object obj){
-        if (this == obj) return true;
-        if (obj == null || this.getClass() == obj.getClass()) return false;
-        Thesis thesis = (Thesis) obj;
-        return Objects.equals(this.id, thesis.id) &&
-                Objects.equals(this.intro, thesis.intro) &&
-                Objects.equals(this.definition, thesis.definition) &&
-                Objects.equals(this.problem, thesis.problem) &&
-                Objects.equals(this.plan, thesis.plan) &&
-                Objects.equals(this.caseIntro, thesis.caseIntro) &&
-                Objects.equals(this.caseDesc, thesis.caseDesc) &&
-                Objects.equals(this.roundNumber, thesis.roundNumber);
-    }
-
-    @Override
-    public String toString(){
-        return "Thesis [id = " + id +
-                ", intro = " + intro +
-                ", definition = " + definition +
-                ", problem = " + problem +
-                ", plan = " + plan +
-                ", caseIntro = " + caseIntro +
-                ", caseDesc = " + caseDesc +
-                ", roundNumber = " + roundNumber + "];";
-    }
-
-
     public Thesis getAnswer() {
         return answer;
     }
@@ -191,5 +162,44 @@ public class Thesis {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Timestamp getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(Timestamp dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Thesis thesis = (Thesis) o;
+        return id.equals(thesis.id) && intro.equals(thesis.intro) && Objects.equals(definition, thesis.definition) && Objects.equals(problem, thesis.problem) && Objects.equals(plan, thesis.plan) && Objects.equals(caseIntro, thesis.caseIntro) && Objects.equals(caseDesc, thesis.caseDesc) && roundNumber.equals(thesis.roundNumber) && Objects.equals(answer, thesis.answer) && Objects.equals(answers, thesis.answers) && debate.equals(thesis.debate) && person.equals(thesis.person) && Objects.equals(dateTime, thesis.dateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, intro, definition, problem, plan, caseIntro, caseDesc, roundNumber,  answers, debate, person, dateTime);
+    }
+
+    @Override
+    public String toString() {
+        return "Thesis{" +
+                "id=" + id +
+                ", intro='" + intro + '\'' +
+                ", definition='" + definition + '\'' +
+                ", problem='" + problem + '\'' +
+                ", plan='" + plan + '\'' +
+                ", caseIntro='" + caseIntro + '\'' +
+                ", caseDesc='" + caseDesc + '\'' +
+                ", roundNumber=" + roundNumber +
+                ", answer=" + answer +
+                ", debate=" + debate +
+                ", person=" + person +
+                ", dateTime=" + dateTime +
+                '}';
     }
 }

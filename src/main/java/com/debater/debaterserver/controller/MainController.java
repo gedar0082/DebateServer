@@ -31,6 +31,8 @@ public class MainController {
     @Autowired
     private ArgumentService argumentService;
 
+
+
     /*
     person block
      */
@@ -157,8 +159,63 @@ public class MainController {
 
     @PostMapping("/insertRawPersonDebate")
     ResponseEntity<Void> insertRawPersonDebate(@RequestBody PersonDebateRaw personDebateRaw){
+        System.out.println("insert person_debate raw = " + personDebateRaw.toString());
         personDebateService.insertRawPersonDebate(personDebateRaw);
         return ResponseEntity.ok().build();
     }
+
+    /*
+    thesis block
+     */
+
+    @GetMapping("/getThesesByDebateId")
+    @ResponseBody List<Thesis> getThesesByDebateId(@RequestParam Long id){
+        //System.out.println("get theses");
+        List<Thesis> list = thesisService.getThesesByDebateId(id);
+        //System.out.println("theses = " + list.toString());
+        return list;
+    }
+
+    @PostMapping("/insertThesis")
+    @ResponseBody Thesis insertThesis(@RequestBody Thesis thesis){
+        System.out.println("insert thesis : " + thesis.toString());
+        return thesisService.insertThesis(thesis);
+    }
+
+    @PostMapping("/insertThesisRaw")
+    @ResponseBody Long insertThesisRaw(@RequestBody ThesisRaw thesisRaw){
+        //System.out.println(thesisRaw.toString());
+        return thesisService.insertThesisRaw(thesisRaw);
+    }
+
+    @PostMapping("/insertThesisRaw2")
+    @ResponseBody Long insertThesisRaw2(@RequestBody ThesisRaw thesisRaw){
+        //System.out.println(thesisRaw.toString());
+        return thesisService.insertThesisRaw2(thesisRaw);
+    }
+
+    @GetMapping("/getArgumentsByDebateId")
+    @ResponseBody List<Argument> getArgumentsByDebateId(@RequestParam Long id){
+        return argumentService.getArgumentsByDebateId(id);
+    }
+
+    @PostMapping("/insertArgumentRaw")
+    @ResponseBody Long insertArgumentRaw(@RequestBody ArgumentRaw argument){
+        return argumentService.insertArgumentRaw(argument);
+    }
+
+    @PostMapping("/insertArgumentWithoutAnswerRaw")
+    @ResponseBody Long insertArgumentWithoutAnswerRaw(@RequestBody ArgumentRaw argument){
+        System.out.println(argument.toString());
+        return argumentService.insertArgumentWithoutAnswerRaw(argument);
+    }
+
+
+
+
+
+
+
+
 
 }

@@ -1,6 +1,7 @@
 package com.debater.debaterserver.service;
 
 import com.debater.debaterserver.entity.Argument;
+import com.debater.debaterserver.entity.ArgumentRaw;
 import com.debater.debaterserver.repository.ArgumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +18,30 @@ public class ArgumentService {
         this.argumentRepository = argumentRepository;
     }
 
-    public List<Argument> getArgumentByThesis_Id(Integer id){
-        return argumentRepository.getArgumentByThesis_Id(id);
+    public List<Argument> getArgumentsByDebateId(Long id){
+        return argumentRepository.getArgumentsByDebateId(id);
     }
 
-    public List<Argument> getArgumentByDebate_id(Integer id){
-        return argumentRepository.getArgumentByDebate_id(id);
+    public Long insertArgumentRaw(ArgumentRaw argumentRaw){
+        return argumentRepository.insertArgumentRaw(argumentRaw.getStatement(),
+                argumentRaw.getClarification(),
+                argumentRaw.getEvidence(),
+                argumentRaw.getSummary(),
+                argumentRaw.getAnswer_id(),
+                argumentRaw.getDebate_id(),
+                argumentRaw.getThesis_id(),
+                argumentRaw.getPerson_id(),
+                argumentRaw.getDate_time());
     }
 
-    public Argument getArgumentById(Integer id){
-        return argumentRepository.findArgumentById(id);
+    public Long insertArgumentWithoutAnswerRaw(ArgumentRaw argumentRaw){
+        return argumentRepository.insertArgumentWithoutAnswerRaw(argumentRaw.getStatement(),
+                argumentRaw.getClarification(),
+                argumentRaw.getEvidence(),
+                argumentRaw.getSummary(),
+                argumentRaw.getDebate_id(),
+                argumentRaw.getThesis_id(),
+                argumentRaw.getPerson_id(),
+                argumentRaw.getDate_time());
     }
 }
