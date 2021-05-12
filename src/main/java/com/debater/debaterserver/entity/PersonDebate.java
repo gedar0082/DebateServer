@@ -12,11 +12,11 @@ public class PersonDebate {
     @EmbeddedId
     private PersonDebateId id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("debateId")
     private Debate debate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("personId")
     private Person person;
 
@@ -29,16 +29,16 @@ public class PersonDebate {
     public PersonDebate(Debate debate, Person person){
         this.debate = debate;
         this.person = person;
-        this.id = new PersonDebateId(debate.getId(), person.getId());
+        //this.id = new PersonDebateId(debate.getId(), person.getId());
     }
 
-    public PersonDebateId getId() {
-        return id;
-    }
-
-    public void setId(PersonDebateId id) {
-        this.id = id;
-    }
+//    public PersonDebateId getId() {
+//        return id;
+//    }
+//
+//    public void setId(PersonDebateId id) {
+//        this.id = id;
+//    }
 
     public Debate getDebate() {
         return debate;
@@ -69,7 +69,7 @@ public class PersonDebate {
         if (this == obj) return true;
         if (obj == null || this.getClass() == obj.getClass()) return false;
         PersonDebate pd = (PersonDebate) obj;
-        return Objects.equals(this.id, pd.id) &&
+        return
                 Objects.equals(this.debate, pd.debate) &&
                 Objects.equals(this.person, pd.person) &&
                 Objects.equals(this.rights, pd.rights);
@@ -77,12 +77,12 @@ public class PersonDebate {
 
     @Override
     public int hashCode(){
-        return Objects.hash(id, debate, person, rights);
+        return Objects.hash( debate, person, rights);
     }
 
     @Override
     public String toString(){
-        return "Regulations[id = " + id +
+        return "Regulations["+
                 ", debate = " + debate.toString() +
                 ", person = " + person.toString() +
                 ", rights = " + rights.toString() + "];";

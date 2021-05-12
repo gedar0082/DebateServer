@@ -20,16 +20,18 @@ public interface PersonDebateRepository extends JpaRepository<PersonDebate, Long
 
     List<PersonDebate> getPersonDebateByPerson_Id(Long person_id);
 
+    List<PersonDebate> getPersonDebatesBy();
+
     boolean existsPersonDebateByDebate_IdAndPerson_Id(Long debate_id, Long person_id);
 
     @Transactional
     @Modifying
     @Query(value =
-            "delete from person_debate as pd where pd.person_id = :person_id and pd.debate_id = :debate_id",
+            "delete from person_debate as pd where pd.person_id = :personId and pd.debate_id = :debateId ;",
             nativeQuery = true)
     void deleteRawPersonDebateByDebateIdAndPersonId(
-            @Param("debate_id") Long debateId,
-            @Param("person_id") Long personId);
+            @Param("personId") Long personId,
+            @Param("debateId") Long debateId);
 
     @Transactional
     @Modifying

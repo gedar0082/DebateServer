@@ -31,6 +31,9 @@ public class MainController {
     @Autowired
     private ArgumentService argumentService;
 
+    @Autowired
+    private RightsService rightsService;
+
 
 
     /*
@@ -144,9 +147,15 @@ public class MainController {
         return personDebateService.getPersonDebateByPerson_Id(person_id);
     }
 
+    @GetMapping("/getPersonDebate")
+    @ResponseBody List<PersonDebate> getPersonDebate(){
+        return personDebateService.getPersonDebate();
+    }
+
     @Deprecated
     @DeleteMapping("/deletePersonDebate")
     ResponseEntity<Void> deletePersonDebate(@RequestBody PersonDebateRaw pdr){
+        System.out.println("deleting person_debate = " + pdr.toString());
         personDebateService.deletePersonDebate(pdr);
         return ResponseEntity.ok().build();
     }
@@ -208,6 +217,12 @@ public class MainController {
     @ResponseBody Long insertArgumentWithoutAnswerRaw(@RequestBody ArgumentRaw argument){
         System.out.println(argument.toString());
         return argumentService.insertArgumentWithoutAnswerRaw(argument);
+    }
+
+    @DeleteMapping("/deleteRightById")
+    ResponseEntity<Void> deleteRightById(@RequestParam Long id){
+        rightsService.deleteRightById(id);
+        return ResponseEntity.ok().build();
     }
 
 

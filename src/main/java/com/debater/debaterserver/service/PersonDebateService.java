@@ -30,12 +30,17 @@ public class PersonDebateService {
         return personDebateRepository.getPersonDebateByPerson_Id(person_id);
     }
 
+    public List<PersonDebate> getPersonDebate(){
+        return personDebateRepository.getPersonDebatesBy();
+    }
+
     public void updatePersonDebate(PersonDebate personDebate){
         personDebateRepository.save(personDebate);
     }
 
     public void deletePersonDebate(PersonDebateRaw pdr){
-        personDebateRepository.deleteRawPersonDebateByDebateIdAndPersonId(pdr.getDebateId(), pdr.getPersonId());
+        System.out.println("person id = " + pdr.getPersonId() + " , debate id = " + pdr.getDebateId());
+        personDebateRepository.deleteRawPersonDebateByDebateIdAndPersonId( pdr.getPersonId(), pdr.getDebateId());
     }
 
     public void insertPersonDebate(PersonDebate personDebate){
