@@ -30,6 +30,8 @@ public class ArgumentRaw {
     private Long person_id;
     @Column(name = "date_time")
     private Timestamp date_time;
+    @Column(name = "type")
+    private Integer type;
 
     public ArgumentRaw(){
 
@@ -45,7 +47,8 @@ public class ArgumentRaw {
                        Long debate_id,
                        Long thesis_id,
                        Long person_id,
-                       Timestamp date_time) {
+                       Timestamp date_time,
+                       Integer type) {
         this.id = id;
         this.statement = statement;
         this.clarification = clarification;
@@ -56,6 +59,7 @@ public class ArgumentRaw {
         this.thesis_id = thesis_id;
         this.person_id = person_id;
         this.date_time = date_time;
+        this.type = type;
     }
 
     public Long getId() {
@@ -138,17 +142,25 @@ public class ArgumentRaw {
         this.debate_id = debate_id;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArgumentRaw that = (ArgumentRaw) o;
-        return id.equals(that.id) && statement.equals(that.statement) && Objects.equals(clarification, that.clarification) && Objects.equals(evidence, that.evidence) && Objects.equals(summary, that.summary) && Objects.equals(answer_id, that.answer_id) && debate_id.equals(that.debate_id) && thesis_id.equals(that.thesis_id) && person_id.equals(that.person_id) && date_time.equals(that.date_time);
+        return id.equals(that.id) && statement.equals(that.statement) && Objects.equals(clarification, that.clarification) && Objects.equals(evidence, that.evidence) && Objects.equals(summary, that.summary) && Objects.equals(answer_id, that.answer_id) && debate_id.equals(that.debate_id) && Objects.equals(thesis_id, that.thesis_id) && person_id.equals(that.person_id) && Objects.equals(date_time, that.date_time) && Objects.equals(type, that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, statement, clarification, evidence, summary, debate_id, thesis_id, person_id, date_time);
+        return Objects.hash(id, statement, clarification, evidence, summary, answer_id, debate_id, thesis_id, person_id, date_time, type);
     }
 
     @Override
@@ -164,6 +176,7 @@ public class ArgumentRaw {
                 ", thesis_id=" + thesis_id +
                 ", person_id=" + person_id +
                 ", date_time=" + date_time +
+                ", type=" + type +
                 '}';
     }
 }

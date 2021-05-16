@@ -23,25 +23,52 @@ public class ArgumentService {
     }
 
     public Long insertArgumentRaw(ArgumentRaw argumentRaw){
-        return argumentRepository.insertArgumentRaw(argumentRaw.getStatement(),
-                argumentRaw.getClarification(),
-                argumentRaw.getEvidence(),
-                argumentRaw.getSummary(),
-                argumentRaw.getAnswer_id(),
-                argumentRaw.getDebate_id(),
-                argumentRaw.getThesis_id(),
-                argumentRaw.getPerson_id(),
-                argumentRaw.getDate_time());
+
+        if(argumentRaw.getThesis_id() == null){
+            return argumentRepository.insertArgumentWithoutThesisRaw(argumentRaw.getStatement(),
+                    argumentRaw.getClarification(),
+                    argumentRaw.getEvidence(),
+                    argumentRaw.getSummary(),
+                    argumentRaw.getAnswer_id(),
+                    argumentRaw.getDebate_id(),
+                    argumentRaw.getPerson_id(),
+                    argumentRaw.getDate_time(),
+                    argumentRaw.getType());
+        }else{
+            return argumentRepository.insertArgumentRaw(argumentRaw.getStatement(),
+                    argumentRaw.getClarification(),
+                    argumentRaw.getEvidence(),
+                    argumentRaw.getSummary(),
+                    argumentRaw.getAnswer_id(),
+                    argumentRaw.getDebate_id(),
+                    argumentRaw.getThesis_id(),
+                    argumentRaw.getPerson_id(),
+                    argumentRaw.getDate_time(),
+                    argumentRaw.getType());
+        }
     }
 
     public Long insertArgumentWithoutAnswerRaw(ArgumentRaw argumentRaw){
-        return argumentRepository.insertArgumentWithoutAnswerRaw(argumentRaw.getStatement(),
-                argumentRaw.getClarification(),
-                argumentRaw.getEvidence(),
-                argumentRaw.getSummary(),
-                argumentRaw.getDebate_id(),
-                argumentRaw.getThesis_id(),
-                argumentRaw.getPerson_id(),
-                argumentRaw.getDate_time());
+
+        if(argumentRaw.getThesis_id() == null){
+            return argumentRepository.insertArgumentWithoutAnswerAndThesisRaw(argumentRaw.getStatement(),
+                    argumentRaw.getClarification(),
+                    argumentRaw.getEvidence(),
+                    argumentRaw.getSummary(),
+                    argumentRaw.getDebate_id(),
+                    argumentRaw.getPerson_id(),
+                    argumentRaw.getDate_time(),
+                    argumentRaw.getType());
+        }else{
+            return argumentRepository.insertArgumentWithoutAnswerRaw(argumentRaw.getStatement(),
+                    argumentRaw.getClarification(),
+                    argumentRaw.getEvidence(),
+                    argumentRaw.getSummary(),
+                    argumentRaw.getDebate_id(),
+                    argumentRaw.getThesis_id(),
+                    argumentRaw.getPerson_id(),
+                    argumentRaw.getDate_time(),
+                    argumentRaw.getType());
+        }
     }
 }

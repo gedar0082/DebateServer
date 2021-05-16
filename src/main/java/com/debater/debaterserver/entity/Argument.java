@@ -50,6 +50,9 @@ public class Argument {
     @Column(name = "date_time")
     private Timestamp date_time;
 
+    @Column(name = "type")
+    private Integer type;
+
     public Argument(){
 
     }
@@ -140,17 +143,25 @@ public class Argument {
         this.thesis_id = thesis_id;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Argument argument = (Argument) o;
-        return id.equals(argument.id) && statement.equals(argument.statement) && Objects.equals(clarification, argument.clarification) && Objects.equals(evidence, argument.evidence) && Objects.equals(summary, argument.summary) && Objects.equals(answer, argument.answer) && Objects.equals(answers, argument.answers) && debate.equals(argument.debate) && person_id.equals(argument.person_id) && Objects.equals(thesis_id, argument.thesis_id) && date_time.equals(argument.date_time);
+        return id.equals(argument.id) && statement.equals(argument.statement) && Objects.equals(clarification, argument.clarification) && Objects.equals(evidence, argument.evidence) && Objects.equals(summary, argument.summary) && Objects.equals(answer, argument.answer) && Objects.equals(answers, argument.answers) && debate.equals(argument.debate) && person_id.equals(argument.person_id) && Objects.equals(thesis_id, argument.thesis_id) && Objects.equals(date_time, argument.date_time) && Objects.equals(type, argument.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, statement, clarification, evidence, summary, debate, person_id, thesis_id, date_time);
+        return Objects.hash(id, statement, clarification, evidence, summary, answer, answers, debate, person_id, thesis_id, date_time, type);
     }
 
     @Override
@@ -163,10 +174,11 @@ public class Argument {
                 ", summary='" + summary + '\'' +
                 ", answer=" + answer +
                 ", answers=" + answers +
-                ", debate_id=" + debate +
+                ", debate=" + debate +
                 ", person_id=" + person_id +
                 ", thesis_id=" + thesis_id +
                 ", date_time=" + date_time +
+                ", type=" + type +
                 '}';
     }
 }
