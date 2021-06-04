@@ -26,20 +26,15 @@ public class Rights {
     @ApiModelProperty(value = "write")
     private Integer write;
 
-    @Column(name = "referee")
-    @ApiModelProperty(value = "referee")
-    private Integer referee;
-
     @Column(name = "creator")
     @ApiModelProperty(value = "creator")
     private Integer creator;
 
     public Rights(){}
 
-    public Rights(Integer read, Integer write, Integer referee){
+    public Rights(Integer read, Integer write){
         this.read = read;
         this.write = write;
-        this.referee = referee;
     }
 
     public Integer getId() { return id; }
@@ -54,10 +49,6 @@ public class Rights {
 
     public void setWrite(Integer write) { this.write = write; }
 
-    public Integer getReferee() { return referee; }
-
-    public void setReferee(Integer referee) { this.referee = referee; }
-
     public Integer getCreator() { return creator; }
 
     public void setCreator(Integer creator) { this.creator = creator; }
@@ -70,7 +61,6 @@ public class Rights {
         return Objects.equals(id, rights.id) &&
                 Objects.equals(read, rights.read) &&
                 Objects.equals(write, rights.write) &&
-                Objects.equals(referee, rights.referee) &&
                 Objects.equals(creator, rights.creator);
     }
 
@@ -81,7 +71,6 @@ public class Rights {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((read == null) ? 0 : read.hashCode());
         result = prime * result + ((write == null) ? 0 : write.hashCode());
-        result = prime * result + ((referee == null) ? 0 : referee.hashCode());
         result = prime * result + ((creator == null) ? 0 : creator.hashCode());
         return result;
     }
@@ -91,7 +80,6 @@ public class Rights {
         return "Rights[id = " + id +
                 ", read = " + read +
                 ", write = " + write +
-                ", referee = " + referee +
                 ", creator = " + creator + "];";
     }
 

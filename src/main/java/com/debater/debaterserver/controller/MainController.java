@@ -223,7 +223,10 @@ public class MainController {
     @ApiOperation(value = "insert raw thesis(object fields replaced to its ids)", response = Long.class)
     @PostMapping("/insertThesisRaw")
     @ResponseBody Long insertThesisRaw(@RequestBody ThesisRaw thesisRaw){
-        return thesisService.insertThesisRaw(thesisRaw);
+        System.out.println(thesisRaw);
+        ThesisRaw thesisRaw1 = thesisRaw;
+        if (thesisRaw1.getAnswerId() == 0) thesisRaw1.setAnswerId(null);
+        return thesisService.insertThesisRaw(thesisRaw1);
     }
 
     @ApiOperation(value = "get arguments by debate_id", response = List.class)
@@ -237,7 +240,9 @@ public class MainController {
     @ApiOperation(value = "insert raw argument", response = Long.class)
     @PostMapping("/insertArgumentRaw")
     @ResponseBody Long insertArgumentRaw(@RequestBody ArgumentRaw argument){
-        return argumentService.insertArgumentRaw(argument);
+        ArgumentRaw argumentRaw = argument;
+        if (argumentRaw.getAnswer_id() == 0) argumentRaw.setAnswer_id(null);
+        return argumentService.insertArgumentRaw(argumentRaw);
     }
 
     @ApiOperation(value = "delete Right by its id", response = ResponseEntity.class)
