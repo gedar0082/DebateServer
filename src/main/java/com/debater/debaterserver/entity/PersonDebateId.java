@@ -1,17 +1,23 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
+@ApiModel(value = "PersonDebateId", description = "Embedded complex PK of person_id and debate_id")
 public class PersonDebateId implements Serializable {
 
     @Column(name = "debate_id")
+    @ApiModelProperty(value = "debate_id")
     private Long debateId;
 
     @Column(name = "person_id")
+    @ApiModelProperty(value = "person_id")
     private Long personId;
 
     public PersonDebateId(){}

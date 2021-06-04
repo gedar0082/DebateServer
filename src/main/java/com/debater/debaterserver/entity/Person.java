@@ -1,5 +1,8 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -7,20 +10,25 @@ import java.util.Set;
 
 @Entity
 @Table(name = "person")
+@ApiModel(value = "Person", description = "main class for person with all fields")
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "id")
     private Long id;
 
     @Column(name = "nickname")
+    @ApiModelProperty(value = "nickname")
     private String nickname;
 
     @Column(name = "email")
+    @ApiModelProperty(value = "email")
     private String email;
 
     @Column(name = "password")
+    @ApiModelProperty(value = "password")
     private String password;
 
     @OneToMany(
@@ -28,7 +36,7 @@ public class Person {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<PersonDebate> personDebates = new HashSet<>();
+    private final Set<PersonDebate> personDebates = new HashSet<>();
 
     public Person() {}
 

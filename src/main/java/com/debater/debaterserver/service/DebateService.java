@@ -2,11 +2,9 @@ package com.debater.debaterserver.service;
 
 import com.debater.debaterserver.entity.Debate;
 import com.debater.debaterserver.repository.DebateRepository;
+import com.debater.debaterserver.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
@@ -27,10 +25,6 @@ public class DebateService {
         return debateRepository.getDebateBy();
     }
 
-    public boolean existsDebateById(Long id){
-        return debateRepository.existsDebateById(id);
-    }
-
     public void deleteDebateById(Long id){
         debateRepository.deleteById(id);
     }
@@ -40,7 +34,9 @@ public class DebateService {
     }
 
     public Debate insertDebate(Debate debate){
-        return debateRepository.save(debate);
+        Debate correctedTimeDebate = debate;
+        correctedTimeDebate.setDateStart(Utility.getCurrentTimeGMT());
+        return debateRepository.save(correctedTimeDebate);
     }
 
 }

@@ -1,6 +1,9 @@
 package com.debater.debaterserver.entity;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.HashSet;
@@ -10,24 +13,30 @@ import java.util.Set;
 
 @Entity
 @Table(name = "debate")
+@ApiModel(value = "debate", description = "main class for debate")
 public class Debate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "id")
     private Long id;
 
     @Column(name = "name")
+    @ApiModelProperty(value = "name")
     private String name;
 
     @Column(name = "description")
+    @ApiModelProperty(value = "description")
     private String description;
 
     @Column(name = "date_start")
+    @ApiModelProperty(value = "date_start")
     private Timestamp dateStart;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "regulations_id")
+    @ApiModelProperty(value = "regulations_id")
     private Regulations regulations;
 
     @OneToMany(
@@ -35,7 +44,7 @@ public class Debate {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
-    private Set<PersonDebate> personDebates = new HashSet<>();
+    private final Set<PersonDebate> personDebates = new HashSet<>();
 
 
     public Long getId() {

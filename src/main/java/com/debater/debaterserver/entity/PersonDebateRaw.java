@@ -1,11 +1,18 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Objects;
 
+@ApiModel(value = "PersonDebateRaw", description = "Raw using of person_debate table (only ids in class)")
 public class PersonDebateRaw {
 
+    @ApiModelProperty(value = "debateId")
     private Long debateId;
+    @ApiModelProperty(value = "personId")
     private Long personId;
+    @ApiModelProperty(value = "rightsId")
     private Long rightsId;
 
     public PersonDebateRaw(Long debateId, Long personId, Long rightsId){

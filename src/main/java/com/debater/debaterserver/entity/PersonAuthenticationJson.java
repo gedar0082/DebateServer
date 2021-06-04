@@ -1,10 +1,17 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Objects;
 
+@ApiModel(value = "PersonAuthenticationJson", description = "class for person authentication (without id)")
 public class PersonAuthenticationJson {
+    @ApiModelProperty(value = "nickname")
     private String nickname;
+    @ApiModelProperty(value = "email")
     private String email;
+    @ApiModelProperty(value = "password")
     private String password;
 
     public String getNickname() {

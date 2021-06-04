@@ -1,27 +1,34 @@
 package com.debater.debaterserver.entity;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity(name = "PersonDebate")
 @Table(name = "person_debate")
+@ApiModel(value = "PersonDebate", description = "relation of person, debate and person rights")
 public class PersonDebate {
 
     @EmbeddedId
+    @ApiModelProperty(value = "id")
     private PersonDebateId id;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("debateId")
+    @ApiModelProperty(value = "debateId")
     private Debate debate;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @MapsId("personId")
+    @ApiModelProperty(value = "personId")
     private Person person;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rights_id")
+    @ApiModelProperty(value = "rights_id")
     private Rights rights;
 
     public PersonDebate(){}
@@ -29,16 +36,8 @@ public class PersonDebate {
     public PersonDebate(Debate debate, Person person){
         this.debate = debate;
         this.person = person;
-        //this.id = new PersonDebateId(debate.getId(), person.getId());
     }
 
-//    public PersonDebateId getId() {
-//        return id;
-//    }
-//
-//    public void setId(PersonDebateId id) {
-//        this.id = id;
-//    }
 
     public Debate getDebate() {
         return debate;

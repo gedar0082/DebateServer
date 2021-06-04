@@ -1,51 +1,63 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
+@SuppressWarnings("unused")
+@ApiModel(value = "ThesisRaw", description = "Raw using of thesis class (ids only)")
 public class ThesisRaw {
 
+    @ApiModelProperty(value = "id")
     private Long id;
-    private String intro;
-    private String definition;
-    private String problem;
-    private String plan;
-    private String case_intro;
-    private String case_desc;
-    private String idea;
+
+    @ApiModelProperty(value = "title")
+    private String title;
+
+    @ApiModelProperty(value = "short")
+    private String shrt;
+
+    @ApiModelProperty(value = "statement")
+    private String statement;
+
+    @ApiModelProperty(value = "round_number")
     private Integer round_number;
+
+    @ApiModelProperty(value = "answer_id")
     private Long answer_id;
+
+    @ApiModelProperty(value = "debate_id")
     private Long debate_id;
+
+    @ApiModelProperty(value = "person_id")
     private Long person_id;
+
+    @ApiModelProperty(value = "date_time")
     private Timestamp date_time;
 
+    @ApiModelProperty(value = "type")
+    private Integer type;
 
-    public ThesisRaw(Long id,
-                     String intro,
-                     String definition,
-                     String problem,
-                     String plan,
-                     String case_intro,
-                     String case_desc,
-                     String idea,
+
+    public ThesisRaw(
+                     String title,
+                     String shrt,
+                     String statement,
                      Integer round_number,
                      Long answer_id,
                      Long debate_id,
                      Long person_id,
-                     Timestamp date_time) {
-        this.id = id;
-        this.intro = intro;
-        this.definition = definition;
-        this.problem = problem;
-        this.plan = plan;
-        this.case_intro = case_intro;
-        this.case_desc = case_desc;
-        this.idea = idea;
+                     Integer type) {
+        this.title = title;
+        this.shrt = shrt;
+        this.statement = statement;
         this.round_number = round_number;
         this.answer_id = answer_id;
         this.debate_id = debate_id;
         this.person_id = person_id;
-        this.date_time = date_time;
+        this.type = type;
     }
 
 
@@ -57,60 +69,28 @@ public class ThesisRaw {
         this.id = id;
     }
 
-    public String getIntro() {
-        return intro;
+    public String getTitle() {
+        return title;
     }
 
-    public void setIntro(String intro) {
-        this.intro = intro;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getDefinition() {
-        return definition;
+    public String getShrt() {
+        return shrt;
     }
 
-    public void setDefinition(String definition) {
-        this.definition = definition;
+    public void setShrt(String shrt) {
+        this.shrt = shrt;
     }
 
-    public String getProblem() {
-        return problem;
+    public String getStatement() {
+        return statement;
     }
 
-    public void setProblem(String problem) {
-        this.problem = problem;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
-    }
-
-    public String getCase_intro() {
-        return case_intro;
-    }
-
-    public void setCase_intro(String case_intro) {
-        this.case_intro = case_intro;
-    }
-
-    public String getCase_desc() {
-        return case_desc;
-    }
-
-    public void setCase_desc(String case_desc) {
-        this.case_desc = case_desc;
-    }
-
-    public String getIdea() {
-        return idea;
-    }
-
-    public void setIdea(String idea) {
-        this.idea = idea;
+    public void setStatement(String statement) {
+        this.statement = statement;
     }
 
     public Integer getRound_number() {
@@ -153,35 +133,40 @@ public class ThesisRaw {
         this.date_time = date_time;
     }
 
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ThesisRaw thesisRaw = (ThesisRaw) o;
-        return id.equals(thesisRaw.id) && intro.equals(thesisRaw.intro) && Objects.equals(definition, thesisRaw.definition) && Objects.equals(problem, thesisRaw.problem) && Objects.equals(plan, thesisRaw.plan) && Objects.equals(case_intro, thesisRaw.case_intro) && Objects.equals(case_desc, thesisRaw.case_desc) && Objects.equals(idea, thesisRaw.idea) && round_number.equals(thesisRaw.round_number) && Objects.equals(answer_id, thesisRaw.answer_id) && debate_id.equals(thesisRaw.debate_id) && person_id.equals(thesisRaw.person_id) && date_time.equals(thesisRaw.date_time);
+        return id.equals(thesisRaw.id) && title.equals(thesisRaw.title) && shrt.equals(thesisRaw.shrt) && statement.equals(thesisRaw.statement) && round_number.equals(thesisRaw.round_number) && Objects.equals(answer_id, thesisRaw.answer_id) && debate_id.equals(thesisRaw.debate_id) && person_id.equals(thesisRaw.person_id) && date_time.equals(thesisRaw.date_time) && type.equals(thesisRaw.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, intro, definition, problem, plan, case_intro, case_desc, idea, round_number, answer_id, debate_id, person_id, date_time);
+        return Objects.hash(id, title, shrt, statement, round_number, answer_id, debate_id, person_id, date_time, type);
     }
 
     @Override
     public String toString() {
         return "ThesisRaw{" +
                 "id=" + id +
-                ", intro='" + intro + '\'' +
-                ", definition='" + definition + '\'' +
-                ", problem='" + problem + '\'' +
-                ", plan='" + plan + '\'' +
-                ", case_intro='" + case_intro + '\'' +
-                ", case_desc='" + case_desc + '\'' +
-                ", idea='" + idea + '\'' +
+                ", title='" + title + '\'' +
+                ", shrt='" + shrt + '\'' +
+                ", statement='" + statement + '\'' +
                 ", round_number=" + round_number +
                 ", answer_id=" + answer_id +
                 ", debate_id=" + debate_id +
                 ", person_id=" + person_id +
                 ", date_time=" + date_time +
+                ", type=" + type +
                 '}';
     }
 }

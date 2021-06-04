@@ -1,36 +1,53 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 
-
+@ApiModel(value = "ArgumentRaw", description = "this class stored all fields as JSON, and" +
+        " some complex fields, like debate_id are stored as inner JSON" )
 public class ArgumentRaw {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "id")
     private Long id;
+
+    @Column(name = "title")
+    @ApiModelProperty(value = "title")
+    private String title;
+
     @Column(name = "statement")
+    @ApiModelProperty(value = "statement")
     private String statement;
-    @Column(name = "clarification")
-    private String clarification;
-    @Column(name = "evidence")
-    private String evidence;
-    @Column(name = "summary")
-    private String summary;
+
     @Column(name = "answer_id")
+    @ApiModelProperty(value = "answer_id")
     private Long answer_id;
+
     @Column(name = "debate_id")
+    @ApiModelProperty(value = "debate_id")
     private Long debate_id;
+
     @Column(name = "thesis_id")
+    @ApiModelProperty(value = "thesis_id")
     private Long thesis_id;
+
     @Column(name = "person_id")
+    @ApiModelProperty(value = "person_id")
     private Long person_id;
+
     @Column(name = "date_time")
+    @ApiModelProperty(value = "date_time")
     private Timestamp date_time;
+
     @Column(name = "type")
+    @ApiModelProperty(value = "type")
     private Integer type;
 
     public ArgumentRaw(){
@@ -39,10 +56,8 @@ public class ArgumentRaw {
 
 
     public ArgumentRaw(Long id,
+                       String title,
                        String statement,
-                       String clarification,
-                       String evidence,
-                       String summary,
                        Long answer_id,
                        Long debate_id,
                        Long thesis_id,
@@ -50,10 +65,8 @@ public class ArgumentRaw {
                        Timestamp date_time,
                        Integer type) {
         this.id = id;
+        this.title = title;
         this.statement = statement;
-        this.clarification = clarification;
-        this.evidence = evidence;
-        this.summary = summary;
         this.answer_id = answer_id;
         this.debate_id = debate_id;
         this.thesis_id = thesis_id;
@@ -70,36 +83,20 @@ public class ArgumentRaw {
         this.id = id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getStatement() {
         return statement;
     }
 
     public void setStatement(String statement) {
         this.statement = statement;
-    }
-
-    public String getClarification() {
-        return clarification;
-    }
-
-    public void setClarification(String clarification) {
-        this.clarification = clarification;
-    }
-
-    public String getEvidence() {
-        return evidence;
-    }
-
-    public void setEvidence(String evidence) {
-        this.evidence = evidence;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public Long getAnswer_id() {
@@ -155,22 +152,20 @@ public class ArgumentRaw {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArgumentRaw that = (ArgumentRaw) o;
-        return id.equals(that.id) && statement.equals(that.statement) && Objects.equals(clarification, that.clarification) && Objects.equals(evidence, that.evidence) && Objects.equals(summary, that.summary) && Objects.equals(answer_id, that.answer_id) && debate_id.equals(that.debate_id) && Objects.equals(thesis_id, that.thesis_id) && person_id.equals(that.person_id) && Objects.equals(date_time, that.date_time) && Objects.equals(type, that.type);
+        return id.equals(that.id) && title.equals(that.title) && statement.equals(that.statement) && Objects.equals(answer_id, that.answer_id) && debate_id.equals(that.debate_id) && Objects.equals(thesis_id, that.thesis_id) && person_id.equals(that.person_id) && date_time.equals(that.date_time) && type.equals(that.type);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, statement, clarification, evidence, summary, answer_id, debate_id, thesis_id, person_id, date_time, type);
+        return Objects.hash(id, title, statement, answer_id, debate_id, thesis_id, person_id, date_time, type);
     }
 
     @Override
     public String toString() {
         return "ArgumentRaw{" +
                 "id=" + id +
+                ", title='" + title + '\'' +
                 ", statement='" + statement + '\'' +
-                ", clarification='" + clarification + '\'' +
-                ", evidence='" + evidence + '\'' +
-                ", summary='" + summary + '\'' +
                 ", answer_id=" + answer_id +
                 ", debate_id=" + debate_id +
                 ", thesis_id=" + thesis_id +

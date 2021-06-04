@@ -1,9 +1,14 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Objects;
 
+@ApiModel(value = "BodyMessageJson", description = "class for error message in response")
 public class BodyMessageJson {
 
+    @ApiModelProperty(value = "message")
     private String message;
 
     public BodyMessageJson(String message){

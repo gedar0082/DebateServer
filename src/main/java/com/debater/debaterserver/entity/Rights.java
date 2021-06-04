@@ -1,29 +1,37 @@
 package com.debater.debaterserver.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "rights")
+@ApiModel(value = "Rights", description = "rights table(that using in person_debate table)")
 public class Rights {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
+    @ApiModelProperty(value = "id")
     private Integer id;
 
     @Column(name = "read")
+    @ApiModelProperty(value = "read")
     private Integer read;
 
     @Column(name = "write")
+    @ApiModelProperty(value = "write")
     private Integer write;
 
     @Column(name = "referee")
+    @ApiModelProperty(value = "referee")
     private Integer referee;
 
     @Column(name = "creator")
+    @ApiModelProperty(value = "creator")
     private Integer creator;
 
     public Rights(){}
