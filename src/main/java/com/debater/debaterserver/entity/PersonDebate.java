@@ -81,9 +81,9 @@ public class PersonDebate {
 
     @Override
     public String toString(){
-        return "Regulations["+
-                ", debate = " + debate.toString() +
-                ", person = " + person.toString() +
+        return "PersonDebate["+
+                ", debate = " + debate.toString() + "\n" +
+                ", person = " + person.toString() + "\n" +
                 ", rights = " + rights.toString() + "];";
     }
 }

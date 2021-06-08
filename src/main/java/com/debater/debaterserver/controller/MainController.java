@@ -69,12 +69,12 @@ public class MainController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation(value = "update person(mapped by inner id)", response = Person.class)
-    @PutMapping("/updatePerson")
-    @ResponseBody Person updatePerson(@RequestBody Person person){
-        return personService.updatePerson(person);
-
-    }
+//    @ApiOperation(value = "update person(mapped by inner id)", response = Person.class)
+//    @PutMapping("/updatePerson")
+//    @ResponseBody Person updatePerson(@RequestBody Person person){
+//        return personService.updatePerson(person);
+//
+//    }
 
     @ApiOperation(value = "post a person without id to check correct registration." +
             " Will return ResponseEntity with BodyMessageJson.Class." +
@@ -135,12 +135,12 @@ public class MainController {
         return ResponseEntity.ok().build();
     }
 
-    @ApiOperation(value = "update debate(mapped by inner id)", response = ResponseEntity.class)
-    @PutMapping("/updateDebate")
-    ResponseEntity<Void> updateDebate(@RequestBody Debate debate){
-        debateService.updateDebate(debate);
-        return ResponseEntity.ok().build();
-    }
+//    @ApiOperation(value = "update debate(mapped by inner id)", response = ResponseEntity.class)
+//    @PutMapping("/updateDebate")
+//    ResponseEntity<Void> updateDebate(@RequestBody Debate debate){
+//        debateService.updateDebate(debate);
+//        return ResponseEntity.ok().build();
+//    }
 
     @ApiOperation(value = "insert debate", response = Debate.class)
     @PostMapping("/insertDebate")
@@ -234,6 +234,7 @@ public class MainController {
     @ResponseBody List<Argument> getArgumentsByDebateId(@RequestParam Long id){
         List<Argument> argumentList = argumentService.getArgumentsByDebateId(id);
         argumentList.forEach(it -> it.getPerson_id().setPassword(""));
+        argumentList.forEach(System.out::println);
         return argumentList;
     }
 
@@ -245,11 +246,5 @@ public class MainController {
         return argumentService.insertArgumentRaw(argumentRaw);
     }
 
-    @ApiOperation(value = "delete Right by its id", response = ResponseEntity.class)
-    @DeleteMapping("/deleteRightById")
-    ResponseEntity<Void> deleteRightById(@RequestParam Long id){
-        rightsService.deleteRightById(id);
-        return ResponseEntity.ok().build();
-    }
 
 }

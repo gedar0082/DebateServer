@@ -133,6 +133,14 @@ public class Argument {
         this.thesis_id = thesis_id;
     }
 
+    public Timestamp getDate_time() {
+        return date_time;
+    }
+
+    public void setDate_time(Timestamp date_time) {
+        this.date_time = date_time;
+    }
+
     public Integer getType() {
         return type;
     }
