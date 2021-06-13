@@ -12,9 +12,5 @@ public interface DebateRepository extends JpaRepository<Debate, Long> {
 
     List<Debate> getDebateBy();
 
-    boolean existsDebateById(Long id);
-
-
-
 
 }
